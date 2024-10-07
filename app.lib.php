@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 use Symfony\Component\Yaml\Yaml;
 
 $yaml_file = 'config/deploy.yml';
