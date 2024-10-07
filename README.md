@@ -3,7 +3,9 @@ PHP tools for managing docker containers on a remote server from the development
 
 ## Installation
 
-### Server config file
+First, go to your PHP project folder.
+
+### Create the server config file
 
 Create `config/deploy.yml`
 
@@ -28,9 +30,7 @@ servers:
 
 ### Add the script to the project
 
-First, go to your PHP project folder.
-
-Then, clone this project, download the dependencies, and make the scripts executable.
+Clone this project, download the dependencies, and make the scripts executable.
 
 ```bash
 git clone https://github.com/ruhendrawan/cowboyphp.git cbd
