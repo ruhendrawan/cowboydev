@@ -38,6 +38,9 @@ composer require symfony/yaml --dev
 chmod +x cbd/*.php
 ```
 
+
+## Available Scripts
+
 SSH to the server.
 ```bash
 cbd/app_ssh.php
