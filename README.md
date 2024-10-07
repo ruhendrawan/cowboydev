@@ -35,7 +35,7 @@ Then, clone this project, download the dependencies, and make the scripts execut
 ```bash
 git clone https://github.com/ruhendrawan/cowboyphp.git cbd
 composer require symfony/yaml --dev
-chmod +x cbd/*
+chmod +x cbd/*.php
 ```
 
 SSH to the server.
