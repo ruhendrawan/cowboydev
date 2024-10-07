@@ -63,7 +63,7 @@ cbd/app_container_scp_file.php
 ```
 
 
-# Optional
+## Optional
 This tool could be an extension to https://kamal-deploy.org/
 
 Install with `gem install kamal`
