@@ -28,15 +28,12 @@ servers:
 
 ### Add the script to the project
 
-First, go to your PHP project folder and clone this project.
+First, go to your PHP project folder.
+
+Then, clone this project, download the dependencies, and make the scripts executable.
 
 ```bash
 git clone https://github.com/ruhendrawan/cowboyphp.git cbd
-```
-
-Then, download the dependencies.
-
-```bash
 composer require symfony/yaml --dev
 chmod +x cbd/*
 ```
