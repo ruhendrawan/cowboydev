@@ -4,10 +4,10 @@
 require __DIR__.'/app.lib.php';
 
 if ($argc < 4) {
-    exit("Usage: <local_file> <destination_path_in_container>\n");
+    exit('Usage: <server_name> <file_in_container> <destination_path_on_local>');
 }
 
-$local_file = $argv[2];
+$container_file_path = $argv[2];
 $destination_path = $argv[3];
 
 if ($service && $server_ip && $ssh_user) {
@@ -19,16 +19,16 @@ if ($service && $server_ip && $ssh_user) {
         exit("Error: No running container found with label 'service=$service' on server $server_ip.\n");
     }
 
-    echo "Copying file '$local_file' to container '$container_id' at '$destination_path' on server $server_ip...\n";
-    $scp_command = "scp -i $ssh_key $local_file $ssh_user@$server_ip:/tmp/";
+    echo "Copying file '$container_file_path' from container '$container_id' to '$destination_path' on local machine...\n";
+    $copy_to_tmp_command = "ssh -i $ssh_key $ssh_user@$server_ip 'docker cp $container_id:$container_file_path /tmp/".basename($container_file_path)."'";
+    echo "Executing: $copy_to_tmp_command\n";
+    passthru($copy_to_tmp_command);
+
+    $scp_command = "scp -i $ssh_key $ssh_user@$server_ip:/tmp/".basename($container_file_path)." $destination_path";
     echo "Executing: $scp_command\n";
     passthru($scp_command);
 
-    $move_file_command = "ssh -i $ssh_key $ssh_user@$server_ip 'docker cp /tmp/".basename($local_file)." $container_id:$destination_path'";
-    echo "Executing: $move_file_command\n";
-    passthru($move_file_command);
-
-    $cleanup_command = "ssh -i $ssh_key $ssh_user@$server_ip 'rm /tmp/".basename($local_file)."'";
+    $cleanup_command = "ssh -i $ssh_key $ssh_user@$server_ip 'rm /tmp/".basename($container_file_path)."'";
     echo "Executing: $cleanup_command\n";
     passthru($cleanup_command);
 
